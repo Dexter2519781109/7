@@ -13,42 +13,60 @@
       background-color: #000;
       text-align: center;
       color: white;
-    }
-    .selector {
-      padding: 20px;
-      position: relative;
-      z-index: 2;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #modelContainer {
-      position: relative;
-      z-index: 1;
-    }
-    model-viewer {
-      width: 100vw;
-      height: 60vh;
-      background-color: #000;
-      display: block;
+      overflow-x: hidden;
     }
     #versionTag {
-      position: absolute;
+      position: fixed;
       top: 8px;
       left: 8px;
       color: yellow;
       font-size: 16px;
-      z-index: 9999;
+      z-index: 1000;
+    }
+    .selector {
+      padding: 10px;
+      background-color: #111;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+    }
+    #modelContainer {
+      position: relative;
+      z-index: 1;
+      background-color: #000;
+    }
+    model-viewer {
+      width: 100vw;
+      height: 70vh;
+      background-color: #000;
+      display: block;
+    }
+    .ar-button-custom {
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
     }
   </style>
 </head>
 <body>
   <div id="versionTag">v1.x</div>
 
-  <h2>Válassz egy 3D modellt:</h2>
   <div class="selector">
     <button onclick="loadModel('SMPlex1')">SMPlex 1</button>
     <button onclick="loadModel('SMPlex2')">SMPlex 2</button>
@@ -66,7 +84,7 @@
       auto-rotate
       autoplay
       alt="3D modell megjelenítő">
-      <button slot="ar-button" style="background: white; color: black; padding: 10px 20px; border-radius: 6px; border: none; font-size: 16px; position: absolute; z-index: 10;">📱 Nézd meg AR-ben</button>
+      <button slot="ar-button" class="ar-button-custom">📱 Nézd meg AR-ben</button>
     </model-viewer>
   </div>
 
@@ -81,4 +99,3 @@
   </script>
 </body>
 </html>
-

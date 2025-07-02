@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Modellek AR-ben</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #000;
+      text-align: center;
+      color: white;
+    }
+    .selector {
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #modelContainer {
+      position: relative;
+      z-index: 1;
+    }
+    model-viewer {
+      width: 100vw;
+      height: 60vh;
+      background-color: #000;
+      display: block;
+    }
+    #versionTag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      color: yellow;
+      font-size: 16px;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="versionTag">v1.x</div>
+
+  <h2>Válassz egy 3D modellt:</h2>
+  <div class="selector">
+    <button onclick="loadModel('SMPlex1')">SMPlex 1</button>
+    <button onclick="loadModel('SMPlex2')">SMPlex 2</button>
+    <button onclick="loadModel('SMPSTD')">SMPSTD</button>
+    <button onclick="loadModel('SMPlex3')">AR</button>
+  </div>
+
+  <div id="modelContainer">
+    <model-viewer id="viewer"
+      src="SMPlex1.glb"
+      ar
+      ar-modes="scene-viewer webxr quick-look"
+      ar-scale="auto"
+      camera-controls
+      auto-rotate
+      autoplay
+      alt="3D modell megjelenítő">
+      <button slot="ar-button" style="background: white; color: black; padding: 10px 20px; border-radius: 6px; border: none; font-size: 16px; position: absolute; z-index: 10;">📱 Nézd meg AR-ben</button>
+    </model-viewer>
+  </div>
+
+  <script>
+    let currentModel = 'SMPlex1';
+
+    function loadModel(type) {
+      currentModel = type;
+      const viewer = document.getElementById('viewer');
+      viewer.setAttribute('src', `${type}.glb`);
+    }
+  </script>
+</body>
+</html>
+
